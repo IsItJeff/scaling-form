@@ -2,10 +2,10 @@ import { useState } from "react"
 
 export const AddFieldsContainer = () =>{
     const fieldsObj = {}
-    const [inputChange, setInputChange] = useState([]);
+    const [inputFields, setInputFields] = useState([]);
 
-    const handleOnChange = (value) =>{
-        setInputChange(value)
+    const handleOnChange = (value) => {
+        setInputFields(... inputFields, value)
     }
 
     const submitChanges = () => {
@@ -13,23 +13,27 @@ export const AddFieldsContainer = () =>{
     }
 
     const addInputField = () => {
-
+        setInputFields([...inputFields, fieldsObj])
     }
 
     const removeInputField = (index) => {
 
     }
-
+    console.log(inputFields)
     return (
         <div>
-            <button>
+            <button onClick={() =>{addInputField()}}>
                 Add Field +
             </button>
             <br/>
-            <label>
-                Input One
-                <input name="inputOne" type="text" onChange={(event)=>{handleOnChange(event.target.value)}}/>
-            </label>
+            {inputFields.map((field, index)=>{
+                return(
+                <label>
+                    Input One
+                    <input name="inputOne" type="text" onChange={(event)=>{handleOnChange(event.target.value)}}/>
+                </label>
+                )
+            })}
         </div>
     )
 }
