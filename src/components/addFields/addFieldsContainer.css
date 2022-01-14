@@ -1,0 +1,35 @@
+.add-fields-container {
+    border: 1px solid black;
+    margin: 0px;
+    padding: 0px;
+}
+
+.input-fields-container{
+    border: 1px solid black;
+    margin: 0px;
+    padding: 0px;
+}
+
+.input-field-container{
+    padding: 15px;
+    display: grid;
+}
+
+.input-field{
+    padding: 10px;
+}
+
+.input-label{
+    border-radius: 25px 0px 0px 0px;
+    padding: 5px 10px;
+    border: 1px solid black;
+}
+
+.input-box{
+    padding: 5px;
+}
+
+.input-remove-btn{
+    padding: 5px 10px;
+    border-radius: 0px 0px 25px 0px;
+}

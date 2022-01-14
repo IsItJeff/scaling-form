@@ -1,4 +1,5 @@
 import { useState } from "react"
+import "./addFieldsContainer.css";
 
 export const AddFieldsContainer = () => {
     const fieldsObj = {
@@ -29,25 +30,30 @@ export const AddFieldsContainer = () => {
                 Add Text Input +
             </button>
             <br/>
+            <div className="input-fields-container">
             {inputFields.map((fieldObj, index)=>{
                 return(
-                <div key={index}>
-                    <label>
+                <div className="input-field" key={index}>
+                    <label for={`input${index}`} className="input-label">
                         Input {index}
                     </label>
                     <input 
                         name="input" 
-                        placeholder="Enter" 
-                        className="inputField" 
+                        id={`input${index}`}
+                        placeholder="Enter"  
+                        className="input-box"
                         type="text" 
                         value={fieldObj.input} 
                         onChange={(event)=>{handleOnChange(event , index)}}
                     />
-                    <button onClick={()=>{removeInputField(index)}}>Remove</button>
+                    <button 
+                        className="input-remove-btn" 
+                        onClick={()=>{removeInputField(index)}}>Remove</button>
                     <br/>
                 </div>
                 )
             })}
+            </div>
         </div>
     )
 }
