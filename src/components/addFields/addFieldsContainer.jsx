@@ -1,7 +1,9 @@
 import { useState } from "react"
 
-export const AddFieldsContainer = () =>{
-    const fieldsObj = {}
+export const AddFieldsContainer = () => {
+    const fieldsObj = {
+        input:""
+    }
     const [inputFields, setInputFields] = useState([]);
 
     const handleOnChange = (event , index) => {
@@ -20,7 +22,7 @@ export const AddFieldsContainer = () =>{
         fieldsList.splice(index, 1);
         setInputFields(fieldsList);
     }
-    console.log(inputFields)
+
     return (
         <div className="add-fields-container">
             <button onClick={() =>{addInputField()}}>
@@ -33,7 +35,14 @@ export const AddFieldsContainer = () =>{
                     <label>
                         Input {index}
                     </label>
-                    <input name={`input${index}`} className="inputField" type="text" onChange={(event)=>{handleOnChange(event , index)}}/>
+                    <input 
+                        name="input" 
+                        placeholder="Enter" 
+                        className="inputField" 
+                        type="text" 
+                        value={fieldObj.input} 
+                        onChange={(event)=>{handleOnChange(event , index)}}
+                    />
                     <button onClick={()=>{removeInputField(index)}}>Remove</button>
                     <br/>
                 </div>
