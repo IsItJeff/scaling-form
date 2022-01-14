@@ -4,12 +4,11 @@ export const AddFieldsContainer = () =>{
     const fieldsObj = {}
     const [inputFields, setInputFields] = useState([]);
 
-    const handleOnChange = (value) => {
-        setInputFields(... inputFields, value)
-    }
-
-    const submitChanges = () => {
-        
+    const handleOnChange = (event , index) => {
+        const {name, value} = event.target;
+        const fieldsList = [...inputFields];
+        fieldsList[index][name] = value;
+        setInputFields(fieldsList);
     }
 
     const addInputField = () => {
@@ -17,21 +16,27 @@ export const AddFieldsContainer = () =>{
     }
 
     const removeInputField = (index) => {
-
+        const fieldsList = [...inputFields];
+        fieldsList.splice(index, 1);
+        setInputFields(fieldsList);
     }
     console.log(inputFields)
     return (
-        <div>
+        <div className="add-fields-container">
             <button onClick={() =>{addInputField()}}>
-                Add Field +
+                Add Text Input +
             </button>
             <br/>
-            {inputFields.map((field, index)=>{
+            {inputFields.map((fieldObj, index)=>{
                 return(
-                <label>
-                    Input One
-                    <input name="inputOne" type="text" onChange={(event)=>{handleOnChange(event.target.value)}}/>
-                </label>
+                <div key={index}>
+                    <label>
+                        Input {index}
+                    </label>
+                    <input name={`input${index}`} className="inputField" type="text" onChange={(event)=>{handleOnChange(event , index)}}/>
+                    <button onClick={()=>{removeInputField(index)}}>Remove</button>
+                    <br/>
+                </div>
                 )
             })}
         </div>
